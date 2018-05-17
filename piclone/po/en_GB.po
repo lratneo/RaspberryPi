@@ -1,0 +1,242 @@
+# English translations for piclone package.
+# Copyright (C) 2017 Raspberry Pi
+# This file is distributed under the same license as the piclone package.
+# Simon Long <simon@raspberrypi.org>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: piclone 0.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-18 08:18+0100\n"
+"PO-Revision-Date: 2017-07-18 08:19+0100\n"
+"Last-Translator: Simon Long <simon@raspberrypi.org>\n"
+"Language-Team: English (British)\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../src/piclone.c:139
+msgid "OK"
+msgstr "OK"
+
+#: ../src/piclone.c:187
+msgid "Unable to read source."
+msgstr "Unable to read source."
+
+#: ../src/piclone.c:193
+msgid "Non-MSDOS partition table on source."
+msgstr "Non-MSDOS partition table on source."
+
+#: ../src/piclone.c:200
+msgid "Preparing target..."
+msgstr "Preparing target..."
+
+#: ../src/piclone.c:213
+msgid "Could not write to destination."
+msgstr "Could not write to destination."
+
+#: ../src/piclone.c:227
+msgid "Could not create FAT."
+msgstr "Could not create FAT."
+
+#: ../src/piclone.c:233
+msgid "Reading partitions..."
+msgstr "Reading partitions..."
+
+#: ../src/piclone.c:248
+msgid "Too many partitions on source."
+msgstr "Too many partitions on source."
+
+#: ../src/piclone.c:260
+msgid "Preparing partitions..."
+msgstr "Preparing partitions..."
+
+#: ../src/piclone.c:271 ../src/piclone.c:282 ../src/piclone.c:291
+msgid "Could not create partition."
+msgstr "Could not create partition."
+
+#: ../src/piclone.c:356 ../src/piclone.c:362 ../src/piclone.c:384
+#: ../src/piclone.c:390
+msgid "Could not create file system."
+msgstr "Could not create file system."
+
+#: ../src/piclone.c:407 ../src/piclone.c:415
+msgid "Could not set flags."
+msgstr "Could not set flags."
+
+#: ../src/piclone.c:432
+#, c-format
+msgid "Copying partition %d of %d..."
+msgstr "Copying partition %d of %d..."
+
+#: ../src/piclone.c:439 ../src/piclone.c:445
+msgid "Could not mount partition."
+msgstr "Could not mount partition."
+
+#: ../src/piclone.c:463
+msgid "Insufficient space. Backup aborted."
+msgstr "Insufficient space. Backup aborted."
+
+#: ../src/piclone.c:496 ../src/piclone.c:502
+msgid "Could not unmount partition."
+msgstr "Could not unmount partition."
+
+#: ../src/piclone.c:508
+msgid "Copy complete."
+msgstr "Copy complete."
+
+#. add message
+#: ../src/piclone.c:584
+msgid "Checking source..."
+msgstr "Checking source..."
+
+#. add cancel button
+#: ../src/piclone.c:594
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ../src/piclone.c:661
+#, c-format
+msgid "This will erase all content on the device '%s'. Are you sure?"
+msgstr "This will erase all content on the device '%s'. Are you sure?"
+
+#. add buttons
+#: ../src/piclone.c:669
+msgid "No"
+msgstr "No"
+
+#: ../src/piclone.c:673
+msgid "Yes"
+msgstr "Yes"
+
+#: ../src/piclone.c:710 ../src/piclone.c:763
+msgid "No devices available"
+msgstr "No devices available"
+
+#: ../src/piclone.c:813
+msgid "Select the device to copy from"
+msgstr "Select the device to copy from"
+
+#: ../src/piclone.c:821
+msgid "Select the device to copy to"
+msgstr "Select the device to copy to"
+
+#. End of file
+#. ===========================================================================
+#: ../data/piclone.ui.h:1 ../data/piclone.desktop.in.h:1
+msgid "SD Card Copier"
+msgstr "SD Card Copier"
+
+#: ../data/piclone.ui.h:2
+msgid "Help"
+msgstr "Help"
+
+#: ../data/piclone.ui.h:3
+msgid "Start"
+msgstr "Start"
+
+#: ../data/piclone.ui.h:4
+msgid "Copy From Device:"
+msgstr "Copy From Device:"
+
+#: ../data/piclone.ui.h:5
+msgid "Select the device from which to copy"
+msgstr "Select the device from which to copy"
+
+#: ../data/piclone.ui.h:6
+msgid "Copy To Device:"
+msgstr "Copy To Device:"
+
+#: ../data/piclone.ui.h:7
+msgid "Select the device to which to copy"
+msgstr "Select the device to which to copy"
+
+#: ../data/piclone.ui.h:8
+msgid "New Partition UUIDs"
+msgstr "New Partition UUIDs"
+
+#: ../data/piclone.ui.h:9
+msgid "Check this box to create new partition UUIDs on the copy"
+msgstr "Check this box to create new partition UUIDs on the copy"
+
+#: ../data/piclone.ui.h:10
+msgid ""
+"SD Card Copier v1.0\n"
+"\n"
+"This is an application to copy and back up SD cards. To use it, you will "
+"need a USB SD card writer.\n"
+"\n"
+"To back up your Raspberry Pi's internal SD card, insert a blank SD card into "
+"a USB card writer and connect it to your Pi. Then start the application, "
+"choose your card writer from the “Copy To Device” drop-down box and press "
+"“Start”. The copy process will take 10-15 minutes depending on the size of "
+"your card.\n"
+"\n"
+"The resulting card should be a bootable copy of your existing card; to "
+"restore, simply place the backup card into the onboard SD card slot, put the "
+"card to restore onto into the USB writer and repeat the copy process above.\n"
+"\n"
+"You can also back up to a standard USB stick, and then restore from the USB "
+"stick to an SD card by setting the “Copy From Device” drop-down to the USB "
+"stick and the “Copy To Device” to a USB card writer containing the card to "
+"restore onto.\n"
+"\n"
+"Note that you cannot copy onto the SD card from which your Pi is currently "
+"booted, which is why it does not appear in the “Copy To Device” dropdown.\n"
+"\n"
+"Note also that the destination card doesn’t need to be the same size as the "
+"source card, but it must have enough space to hold all the data that is on "
+"it. The application will warn you if there is insufficient space on the "
+"destination.\n"
+"\n"
+"Under Raspbian Stretch and later versions, you cannot mount two partitions "
+"with the same UUID, so you will not be able to mount a cloned SD card when "
+"booted from the disk from which it was cloned. If you need to do this, "
+"check the \"New Partition UUIDs\" box before copying.\n"
+msgstr ""
+"SD Card Copier v1.0\n"
+"\n"
+"This is an application to copy and back up SD cards. To use it, you will "
+"need a USB SD card writer.\n"
+"\n"
+"To back up your Raspberry Pi's internal SD card, insert a blank SD card into "
+"a USB card writer and connect it to your Pi. Then start the application, "
+"choose your card writer from the “Copy To Device” drop-down box and press "
+"“Start”. The copy process will take 10-15 minutes depending on the size of "
+"your card.\n"
+"\n"
+"The resulting card should be a bootable copy of your existing card; to "
+"restore, simply place the backup card into the onboard SD card slot, put the "
+"card to restore onto into the USB writer and repeat the copy process above.\n"
+"\n"
+"You can also back up to a standard USB stick, and then restore from the USB "
+"stick to an SD card by setting the “Copy From Device” drop-down to the USB "
+"stick and the “Copy To Device” to a USB card writer containing the card to "
+"restore onto.\n"
+"\n"
+"Note that you cannot copy onto the SD card from which your Pi is currently "
+"booted, which is why it does not appear in the “Copy To Device” dropdown.\n"
+"\n"
+"Note also that the destination card doesn’t need to be the same size as the "
+"source card, but it must have enough space to hold all the data that is on "
+"it. The application will warn you if there is insufficient space on the "
+"destination.\n"
+"\n"
+"Under Raspbian Stretch and later versions, you cannot mount two partitions "
+"with the same UUID, so you will not be able to mount a cloned SD card when "
+"booted from the disk from which it was cloned. If you need to do this, "
+"check the \"New Partition UUIDs\" box before copying.\n"
+
+#: ../data/piclone.ui.h:26
+msgid "SD Card Copier Help"
+msgstr "SD Card Copier Help"
+
+#: ../data/piclone.desktop.in.h:2
+msgid "Make a copy of the Raspbian SD card"
+msgstr "Make a copy of the Raspbian SD card"
+
+#: ../data/pwdpic.sh:6
+msgid "Password Required"
+msgstr "Password Required"
