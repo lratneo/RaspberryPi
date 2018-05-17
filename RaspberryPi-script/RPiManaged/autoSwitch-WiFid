@@ -1,0 +1,108 @@
+#!/bin/bash
+
+#
+# core command:
+#   iw dev wlan0 scan
+#   ifdown wlan0
+#   ifup waln0
+#
+
+#
+# Program:
+#
+# Version:
+#     0.0.1: if disconnect -> scan for avaliable wifi -> ifdown -> ifup
+#            duto iwconfig can auto regnazition about the change SSID(wifi)
+#         so, it's no need to search wpa_config file.
+#            But if want to support auto Change high priority WiFi, there are 
+#         still have some work to do which is NOT support on this version now.
+#
+# Auth:
+#    joseph
+# Auth_email:
+#    joseph.lin@aliyun.com
+#
+# Note:
+#    you MUST pay attention to here that this script may be able to worked.
+#       MUST modify /etc/wpa_supplicant/wpa_supplicant.conf suit for your actually network environment.
+#       about how to configure wpa_supplicant that can make your wifi on board work, search on Internet for more Tutorials.
+#       modify array of "scan_ssid“ equal to wpa_supplicant.conf configure.
+#
+
+
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+export PATH
+
+#echo ============ run auto switch WiFi now  =================
+
+scan_ssid[0]="your_wifi_ssid_1_likeLivingRoom"
+scan_ssid[1]="your_wifi_ssid_2_likeClassRoom"
+scan_ssid[2]="your_wifi_ssid_3_likeCompanyPlace"
+
+iw_scan_result=""
+
+echo " " > /var/autoSwitch-WiFi.log      # clean log file.
+
+_true=1
+while [ $_true == 1 ]
+do
+	echo -e "\n" >> /var/autoSwitch-WiFi.log
+	echo "===============================" >> /var/autoSwitch-WiFi.log
+	date >> /var/autoSwitch-WiFi.log
+	for(( i=0; i<${#scan_ssid[@]}; i++ ))
+	do
+		iw_scan_result[i]=`iw dev wlan0 scan | grep ${scan_ssid[i]}`
+		echo ${iw_scan_result[i]}
+		sleep 1s
+	done
+
+	wifi_status=`iwconfig wlan0 | grep ESSID`
+	wifi_status=`echo ${wifi_status} | awk -F '["]' '{print $2}'`
+	echo ${wifi_status} >> /var/autoSwitch-WiFi.log
+
+	# judge wifi is ssid available for connect OK!
+	if [ "$wifi_status" == "" ]; then
+		echo "if wifi_status is empty YES!" >> /var/autoSwitch-WiFi.log
+		
+		# use iwconfig command, run here, means no wifi can connect.
+		# if want to connecting wifi, add new on wpa_config.
+		#   (that means:
+	        #	the wifi already on wpa_config is not in range now )
+	else
+		echo "if wifi_status is empty NO!" >> /var/autoSwitch-WiFi.log
+		
+		# run here, have WPA_config SSID could connect.
+		# get current SSID name from /tmp/ssid.log
+		con_ssid=`cat /tmp/ssid.log | awk -F '["]' '{print $2}'`
+		if [ "$wifi_status" != "$con_ssid" ]; then
+		       echo "wifi changed!" >> /var/autoSwitch-WiFi.log
+		       ifdown wlan0
+		       sleep 4s
+		       ifup wlan0
+		       sleep 10s
+
+		       # update current WiFi to /tmp/ssid.log
+		       iwconfig wlan0 | grep SSID > /tmp/ssid.log
+
+		       ## customer, bring oled-clockd back
+		       ## Note: this is for my self use. doesn't matter with WiFi.
+			#Is_oled_run=`ps aux | grep python | grep oled`
+			#if [ "$Is_oled_run" == "" ]; then
+			#	/usr/bin/python2 /home/pi/Downloads/Python_demo/SPI-oled/TIMER/TIMER.py &> /tmp/oledTIMER.log &
+			#fi
+	      	else
+	 		echo "nothing changed" >> /var/autoSwitch-WiFi.log
+		fi
+	fi
+
+	sleep 120s     # modify here to make scan wifi quikly or slowly.
+done
+
+#debug# 
+#echo ============= EXIT auto switch WiFi  ==================
+
+exit 0
+
+
+
